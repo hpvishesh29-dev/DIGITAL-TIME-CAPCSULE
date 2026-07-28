@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Chrona Space Dark Luxury Design System
+   Spatial Depth, Dynamic 3D Perspective & Holographic Glassmorphism
+   ────────────────────────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    --bg-space: #070B14;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-tertiary: #64748B;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-space);
+    background-image: 
+      radial-gradient(at 10% 15%, rgba(99, 102, 241, 0.18) 0px, transparent 55%),
+      radial-gradient(at 90% 25%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+      radial-gradient(at 50% 85%, rgba(6, 182, 212, 0.12) 0px, transparent 55%),
+      radial-gradient(at 75% 90%, rgba(236, 72, 153, 0.10) 0px, transparent 45%),
+      linear-gradient(180deg, #070B14 0%, #0B0F1C 50%, #060911 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: 'Inter', 'Plus Jakarta Sans', -apple-system, sans-serif;
+    overflow-x: hidden;
+    letter-spacing: -0.01em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    perspective: 1200px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.025em;
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Dynamic 3D UI Depth & Glassmorphism Utilities
+   ────────────────────────────────────────────────────────────────────────── */
+
+.perspective-1000 {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* 3D Interactive Card Tilt Effect */
+.ui-depth-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  will-change: transform;
+}
+
+.ui-depth-card:hover {
+  transform: perspective(1000px) translateZ(12px) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.7),
+    0 0 35px rgba(99, 102, 241, 0.35),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Z-Layer Elevation Pop-outs inside 3D cards */
+.depth-layer-1 {
+  transform: translateZ(8px);
+}
+.depth-layer-2 {
+  transform: translateZ(18px);
+}
+.depth-layer-3 {
+  transform: translateZ(28px);
+}
+
+/* Ultra Dark Spatial Glassmorphism */
+.glass-panel {
+  position: relative;
+  background: rgba(13, 19, 33, 0.78);
+  backdrop-filter: blur(32px) saturate(210%);
+  -webkit-backdrop-filter: blur(32px) saturate(210%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 12px 40px 0 rgba(0, 0, 0, 0.5),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+.glass-panel:hover {
+  border-color: rgba(99, 102, 241, 0.45);
+  box-shadow:
+    0 0 35px rgba(99, 102, 241, 0.25),
+    0 20px 50px rgba(0, 0, 0, 0.65),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.glass-card {
+  position: relative;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 10px 30px -4px rgba(0, 0, 0, 0.55),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.14);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+.glass-card:hover {
+  transform: perspective(1000px) translateY(-6px) translateZ(10px) scale(1.015);
+  border-color: rgba(129, 140, 248, 0.5);
+  box-shadow:
+    0 0 40px rgba(99, 102, 241, 0.35),
+    0 24px 54px -6px rgba(0, 0, 0, 0.75),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Light Reflection Sweep Effect on Hover */
+.glass-card::before, .glass-panel::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 55%
+  );
+  transform: rotate(30deg);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+
+.glass-card:hover::before, .glass-panel:hover::before {
+  transform: rotate(30deg) translate(20%, 20%);
+}
+
+/* Gradient text utilities */
+.text-gradient-space {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 40%, #818CF8 75%, #38BDF8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-vibrant {
+  background: linear-gradient(135deg, #818CF8 0%, #C084FC 45%, #38BDF8 80%, #F472B6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-gradient-vibrant {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #06B6D4 100%);
+  transition: all 0.3s ease;
+}
+
+.bg-gradient-vibrant:hover {
+  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #0891B2 100%);
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(129, 140, 248, 0.7);
+}
